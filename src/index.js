@@ -37,7 +37,7 @@ export default class SVGTranslator {
     this.dy = 0;
   }
 
-  svgModify(svgSrcString) {
+  process(svgSrcString) {
     return new Promise((resolve, reject) => {
       let svgDestString = '';
       const parser = sax.parser(true); // set to false for html-mode

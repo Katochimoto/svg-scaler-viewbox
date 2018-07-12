@@ -1,13 +1,6 @@
-<div align="center">
-  <a href="https://github.com/webpack/webpack">
-    <img width="200" height="200"
-      src="https://webpack.js.org/assets/icon-square-big.svg">
-  </a>
-  <h1>SVG Scaler Loader</h1>
-  <p>Scale your svg files</p>
-</div>
+# SVG Scaler
 
-<h2 align="center">Install</h2>
+Scale svg size
 
 ## Install
 
@@ -19,42 +12,22 @@ or using npm
 npm install style-loader --save-dev
 ```
 
-<h2 align="center"><a href="https://webpack.js.org/concepts/loaders">Usage</a></h2>
+## Usage
 
-It's recommended to combine `svg-scaler-loader` with the [`@svgr/webpack`](https://github.com/smooth-code/svgr/tree/master/packages/webpack)
-
-**component.js**
-```js
-import Icon from './icon.svg'
 ```
+import SVGTranslator from 'svg-scaler-viewbox';
 
-**webpack.config.js**
-```js
-{
-  module: {
-    rules: [
-      {
-        test: /\.svg$/,
-        use: [
-          { loader: '@svgr/webpack' },
-          {
-            loader: 'svg-scaler-loader',
-            options: {
-              width: 24,
-            }
-          }
-        ]
-      }
-    ]
-  }
-}
+new SVGTranslator({ width: 24 }).process(`
+  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48">
+    <circle cx="24" cy="24" r="24" fill="#D8D8D8"/>
+  </svg>
+`).then((result) => {
+  console.log(result)
+});
+
 ```
 
 ## Options
-
-### `svgo`
-
-`type:boolean`, default is `false`, if you want optimize with [svgo](https://github.com/svg/svgo), please set it `true`;
 
 ### `width`
 
@@ -63,3 +36,12 @@ import Icon from './icon.svg'
 ### scale
 
 `type:number`, just normal `scale`, but if have the width or the height option, the `scale` will not work.
+
+## Warning
+
+* not support image in svg.
+
+## Thanks
+
+* https://github.com/fontello/svgpath
+* https://github.com/isaacs/sax-js
