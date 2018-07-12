@@ -1,27 +1,33 @@
-## SVG Scaler
+# SVG Scaler
 
-[![Build Status](https://travis-ci.org/morlay/svg-scaler.svg?branch=master)](https://travis-ci.org/morlay/svg-scaler)
-[![Dependencies](https://david-dm.org/morlay/svg-scaler.png)](https://david-dm.org/morlay/svg-scaler)
+Scale svg size
 
-Scale svg size；
+## Install
+
+```bash
+yarn add style-loader --dev
+```
+or using npm
+```bash
+npm install style-loader --save-dev
+```
 
 ## Usage
 
-`npm install svg-scaler`
+```
+import SVGTranslator from 'svg-scaler-viewbox';
 
-ands
+new SVGTranslator({ width: 24 }).process(`
+  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48">
+    <circle cx="24" cy="24" r="24" fill="#D8D8D8"/>
+  </svg>
+`).then((result) => {
+  console.log(result)
+});
 
-     var svgscaler = require('svg-scaler');
+```
 
-     gulp.src('src/*.svg')
-         .pipe(svgscaler({ width: number })) // options
-         .pipe(gulp.dest('./dest/svg/'))
-
-## options
-
-### `noSvgo`
-
-`type:boolean`, default is `false`, if you want remain more detail, please set it `true`;
+## Options
 
 ### `width`
 
@@ -34,12 +40,8 @@ ands
 ## Warning
 
 * not support image in svg.
-* because use phantom, so need some special configuration. please see the `Gruntfile`, same for gulp.
 
 ## Thanks
 
 * https://github.com/fontello/svgpath
 * https://github.com/isaacs/sax-js
-* https://github.com/svg/svgo
-
-* Test icons from https://dribbble.com/shots/1511236-Champicons-icons-of-champions-FREE-AI
