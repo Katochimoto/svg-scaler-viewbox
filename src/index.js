@@ -98,6 +98,16 @@ export default class SVGTranslator {
 
   svgCenterScale(n) {
     const node = n;
+
+    if (!node.attributes.height && node.attributes.viewBox) {
+      const [, , , height] = node.attributes.viewBox.split(' ');
+      node.attributes.height = height;
+    }
+    if (!node.attributes.width && node.attributes.viewBox) {
+      const [, , width] = node.attributes.viewBox.split(' ');
+      node.attributes.width = width;
+    }
+
     node.attributes.width = parseFloat(node.attributes.width);
     node.attributes.height = parseFloat(node.attributes.height);
     this.dx = 0;
