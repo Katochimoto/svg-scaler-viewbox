@@ -1,27 +1,60 @@
-## SVG Scaler
+<div align="center">
+  <a href="https://github.com/webpack/webpack">
+    <img width="200" height="200"
+      src="https://webpack.js.org/assets/icon-square-big.svg">
+  </a>
+  <h1>SVG Scaler Loader</h1>
+  <p>Scale your svg files</p>
+</div>
 
-[![Build Status](https://travis-ci.org/morlay/svg-scaler.svg?branch=master)](https://travis-ci.org/morlay/svg-scaler)
-[![Dependencies](https://david-dm.org/morlay/svg-scaler.png)](https://david-dm.org/morlay/svg-scaler)
+<h2 align="center">Install</h2>
 
-Scale svg size；
+## Install
 
-## Usage
+```bash
+yarn add style-loader --dev
+```
+or using npm
+```bash
+npm install style-loader --save-dev
+```
 
-`npm install svg-scaler`
+<h2 align="center"><a href="https://webpack.js.org/concepts/loaders">Usage</a></h2>
 
-ands
+It's recommended to combine `svg-scaler-loader` with the [`@svgr/webpack`](https://github.com/smooth-code/svgr/tree/master/packages/webpack)
 
-     var svgscaler = require('svg-scaler');
+**component.js**
+```js
+import Icon from './icon.svg'
+```
 
-     gulp.src('src/*.svg')
-         .pipe(svgscaler({ width: number })) // options
-         .pipe(gulp.dest('./dest/svg/'))
+**webpack.config.js**
+```js
+{
+  module: {
+    rules: [
+      {
+        test: /\.svg$/,
+        use: [
+          { loader: '@svgr/webpack' },
+          {
+            loader: 'svg-scaler-loader',
+            options: {
+              width: 24,
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+```
 
-## options
+## Options
 
-### `noSvgo`
+### `svgo`
 
-`type:boolean`, default is `false`, if you want remain more detail, please set it `true`;
+`type:boolean`, default is `false`, if you want optimize with [svgo](https://github.com/svg/svgo), please set it `true`;
 
 ### `width`
 
@@ -30,16 +63,3 @@ ands
 ### scale
 
 `type:number`, just normal `scale`, but if have the width or the height option, the `scale` will not work.
-
-## Warning
-
-* not support image in svg.
-* because use phantom, so need some special configuration. please see the `Gruntfile`, same for gulp.
-
-## Thanks
-
-* https://github.com/fontello/svgpath
-* https://github.com/isaacs/sax-js
-* https://github.com/svg/svgo
-
-* Test icons from https://dribbble.com/shots/1511236-Champicons-icons-of-champions-FREE-AI

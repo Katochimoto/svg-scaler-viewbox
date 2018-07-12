@@ -1,35 +1,75 @@
 {
-  "name": "svg-scaler",
-  "version": "0.1.5",
-  "description": "help convert svg to png",
-  "main": "index.js",
+  "name": "svg-scaler-viewbox",
+  "version": "0.1.6",
+  "description": "SVG scale utility",
+  "keywords": [
+    "utils",
+    "svg",
+    "scale",
+    "resize"
+  ],
+  "scripts": {
+    "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
+    "build:cjs": "cross-env BABEL_ENV=cjs babel src --out-dir lib",
+    "build": "npm run build:es && npm run build:cjs",
+    "release": "standard-version",
+    "lint": "eslint . --ext .js",
+    "lint:update": "export PKG=eslint-config-airbnb-base; npm info \"$PKG@latest\" peerDependencies --json | command sed 's/[{},]//g ; s/: /@/g' | xargs yarn add --dev \"$PKG@latest\"",
+    "precommit": "lint-staged",
+    "security": "nsp check",
+    "co": "git-cz"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --format=codeframe --fix",
+      "git add"
+    ]
+  },
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "files": [
+    "es",
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com:madzhup/svg-scaler-viewbox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/madzhup/svg-scaler-viewbox/issues"
+  },
+  "homepage": "https://github.com/madzhup/svg-scaler-viewbox",
+  "author": "madzhup <madzhup@gmail.com>",
+  "license": "MIT",
+  "private": false,
   "dependencies": {
-    "event-stream": "^3.1.5",
-    "q": "^1.0.1",
     "sax": "^0.6.0",
-    "svgo": "^0.4.4",
     "svgpath": "^1.0.5"
   },
   "devDependencies": {
-    "chai": "^1.9.1",
-    "grunt": "^0.4.5",
-    "grunt-contrib-clean": "^0.5.0",
-    "grunt-svg2png": "^0.2.1",
-    "gulp-rename": "^1.2.0",
-    "mocha": "^1.20.1",
-    "vinyl-fs": "^0.2.1"
+    "@babel/cli": "^7.0.0-beta.52",
+    "@babel/core": "^7.0.0-beta.52",
+    "@babel/preset-env": "^7.0.0-beta.52",
+    "@babel/preset-stage-0": "^7.0.0-beta.52",
+    "babel-eslint": "^8.2.5",
+    "commitizen": "^2.10.1",
+    "cross-env": "^5.2.0",
+    "cz-conventional-changelog": "^2.1.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-prettier": "^2.6.2",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.2.0",
+    "nsp": "^3.2.1",
+    "prettier": "^1.13.7",
+    "standard-version": "^4.4.0",
+    "webpack": "^4.16.0"
   },
-  "scripts": {
-    "test": "mocha ./test/*.spec.js -R spec"
-  },
-  "author": "morlay",
-  "license": "WTFPL",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/morlay/svg-scaler.git"
-  },
-  "bugs": {
-    "url": "https://github.com/morlay/svg-scaler/issues"
-  },
-  "homepage": "https://github.com/morlay/svg-scaler"
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
 }
