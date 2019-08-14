@@ -1,6 +1,6 @@
 {
   "name": "@rikishi/svg-scaler-viewbox",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "SVG scale utility",
   "keywords": [
     "utils",
@@ -41,7 +41,6 @@
   "homepage": "https://github.com/madzhup/svg-scaler-viewbox",
   "author": "madzhup <madzhup@gmail.com>",
   "license": "MIT",
-  "private": false,
   "dependencies": {
     "sax": "1.2.4",
     "svgpath": "2.2.2"
