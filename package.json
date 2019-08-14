@@ -1,6 +1,6 @@
 {
-  "name": "svg-scaler-viewbox",
-  "version": "0.2.2",
+  "name": "@rikishi/svg-scaler-viewbox",
+  "version": "0.2.3",
   "description": "SVG scale utility",
   "keywords": [
     "utils",
