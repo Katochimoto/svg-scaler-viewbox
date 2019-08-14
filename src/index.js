@@ -1,4 +1,4 @@
-import SvgPath from 'svgpath';
+import svgpath from 'svgpath';
 import sax from 'sax';
 
 function echoOpenTag(node) {
@@ -70,7 +70,7 @@ export default class SVGTranslator {
         this.svgCenterScale(node);
         break;
       case 'path':
-        node.attributes.d = new SvgPath(node.attributes.d)
+        node.attributes.d = svgpath(node.attributes.d)
           .translate(this.dx, this.dy)
           .scale(this.scale)
           .abs()
